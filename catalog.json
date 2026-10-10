@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "categories": {
+    "ai-systems": {
+      "title": "AI systems",
+      "description": "Workflow architecture, agent design, evaluation, and operational readiness."
+    },
+    "software-engineering": {
+      "title": "Software engineering",
+      "description": "Software design, implementation, debugging, testing, and maintenance."
+    },
+    "research": {
+      "title": "Research",
+      "description": "Question framing, evidence gathering, synthesis, and source assessment."
+    },
+    "writing": {
+      "title": "Writing",
+      "description": "Drafting, editing, content planning, and communication."
+    },
+    "data-analysis": {
+      "title": "Data analysis",
+      "description": "Data preparation, exploration, measurement, and interpretation."
+    },
+    "operations": {
+      "title": "Operations",
+      "description": "Repeatable business processes, runbooks, and service operations."
+    }
+  },
+  "skills": [
+    {
+      "name": "ai-agent-team-architect",
+      "path": "skills/ai-agent-team-architect",
+      "category": "ai-systems",
+      "tags": ["architecture", "automation", "agents", "evaluation"]
+    },
+    {
+      "name": "ai-agent-team-review",
+      "path": "skills/ai-agent-team-review",
+      "category": "ai-systems",
+      "tags": ["review", "reliability", "agents", "operations"]
+    }
+  ]
+}

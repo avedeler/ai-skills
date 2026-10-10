@@ -1,0 +1,13 @@
+[
+  {
+    "id": "replace-with-unique-scenario-id",
+    "skill": "replace-with-skill-name",
+    "prompt": "Replace with a realistic task and sufficient scenario context.",
+    "expected_behaviors": [
+      "Replace with an observable behavior or output requirement."
+    ],
+    "forbidden_behaviors": [
+      "Replace with a concrete failure or scope violation."
+    ]
+  }
+]
