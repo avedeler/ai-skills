@@ -58,5 +58,19 @@
     "attribution": "../third_party/using-git-worktrees/README.md",
     "license": "../third_party/using-git-worktrees/LICENSE",
     "provenance": "../third_party/using-git-worktrees/UPSTREAM.json"
-  }
+  },
+  "third_party": [
+    {
+      "id": "openspec",
+      "attribution": "../third_party/openspec/README.md",
+      "license": "../third_party/openspec/LICENSE",
+      "provenance": "../third_party/openspec/UPSTREAM.json"
+    },
+    {
+      "id": "using-git-worktrees",
+      "attribution": "../third_party/using-git-worktrees/README.md",
+      "license": "../third_party/using-git-worktrees/LICENSE",
+      "provenance": "../third_party/using-git-worktrees/UPSTREAM.json"
+    }
+  ]
 }

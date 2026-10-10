@@ -138,17 +138,26 @@ class DevelopmentTeamTests(unittest.TestCase):
                 self.assertTrue(path.is_relative_to(package))
                 self.assertTrue(path.is_file(), key)
             self.assertEqual(team["workspace"]["owner"], team["coordinator"])
+            for dependency in team["third_party"]:
+                for key in ("attribution", "license", "provenance"):
+                    path = (package / "assets" / dependency[key]).resolve()
+                    self.assertTrue(path.is_relative_to(package))
+                    self.assertTrue(path.is_file(), f"{dependency['id']}: {key}")
 
     def test_vendored_upstream_files_match_recorded_revision_hashes(self):
-        vendor = PACKAGE / "third_party/using-git-worktrees"
-        metadata = json.loads((vendor / "UPSTREAM.json").read_text())
-        self.assertRegex(metadata["revision"], r"\A[0-9a-f]{40}\Z")
-        self.assertEqual({entry["path"] for entry in metadata["files"]}, {"SKILL.md", "LICENSE"})
-        for entry in metadata["files"]:
-            with self.subTest(file=entry["path"]):
-                data = (vendor / entry["path"]).read_bytes()
-                self.assertEqual(hashlib.sha256(data).hexdigest(), entry["sha256"])
-        self.assertIn(metadata["copyright"], (vendor / "LICENSE").read_text())
+        team = json.loads((PACKAGE / "assets/team.json").read_text())
+        for dependency in team["third_party"]:
+            metadata_path = PACKAGE / "assets" / dependency["provenance"]
+            metadata = json.loads(metadata_path.read_text())
+            self.assertRegex(metadata["revision"], r"\A[0-9a-f]{40}\Z")
+            self.assertIn("LICENSE", {entry["path"] for entry in metadata["files"]})
+            for entry in metadata["files"]:
+                with self.subTest(project=dependency["id"], file=entry["path"]):
+                    path = (metadata_path.parent / entry["path"]).resolve()
+                    self.assertTrue(path.is_relative_to(metadata_path.parent.resolve()))
+                    self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), entry["sha256"])
+            self.assertIn(metadata["copyright"],
+                          (PACKAGE / "assets" / dependency["license"]).read_text())
 
 
 if __name__ == "__main__":

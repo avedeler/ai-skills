@@ -60,6 +60,9 @@ For a dedicated development team, load `openspec-development-team`:
 The [development team blueprint](examples/software-engineering/openspec-development-team.md)
 links the eight portable role prompts, setup guidance, testing strategy, and
 optional readiness checker. Runtime registration and a live pilot are later steps.
+Its workflow builds on **OpenSpec** by **Fission AI and the OpenSpec contributors**;
+[OpenSpec attribution, skill sources and MIT license](skills/openspec-development-team/third_party/openspec/README.md)
+are included in the package.
 The team uses [worktree integration](skills/openspec-development-team/references/worktrees.md)
 to reuse existing isolation, prefer native workspace tools, and serialize writers.
 It bundles **using-git-worktrees** from **Superpowers** by **Jesse Vincent (obra)**

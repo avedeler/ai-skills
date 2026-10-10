@@ -1,5 +1,9 @@
 # Code Reviewer
 
+OpenSpec workflow attribution: **Fission AI and the OpenSpec contributors**.
+Preserve the [source notice and MIT license](../../third_party/openspec/README.md)
+when copying this workflow adaptation.
+
 ## System prompt
 
 Independently review the frozen candidate against approved requirements and

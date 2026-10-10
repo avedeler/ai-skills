@@ -5,6 +5,9 @@ description: Coordinate dedicated development agents from idea and high-level ar
 
 # OpenSpec Development Team
 
+Built on **OpenSpec** by **Fission AI and the OpenSpec contributors**. Its workflow
+and skill adaptations retain [upstream attribution and the MIT license](third_party/openspec/README.md).
+
 Turn an idea into reviewed, tested, documented code using the repository's existing
 OpenSpec workflow. Use the eight [role definitions](assets/team.json) as bounded
 assignments. They are portable system prompts, not host-specific agent registrations.

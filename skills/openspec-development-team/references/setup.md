@@ -7,8 +7,11 @@ Copy this complete skill package to the host's supported skill location. Load
 [team.json](../assets/team.json) contains a copyable system prompt and boundary
 examples. The manifest is a role inventory, not an executable scheduler config.
 
-Keep the bundled `third_party/using-git-worktrees/` directory, attribution and MIT
-license with every copy. Load [worktree integration](worktrees.md) before writes;
+Keep the entire bundled `third_party/` directory with every copy, including
+[OpenSpec attribution](../third_party/openspec/README.md) and
+[Superpowers attribution](../third_party/using-git-worktrees/README.md), source
+provenance and both MIT licenses. If copying role prompts individually, include
+their linked notices and licenses. Load [worktree integration](worktrees.md) before writes;
 it uses the upstream skill without requiring a separately installed plugin.
 
 Register the roles using the chosen host's native agent mechanism. Keep provider,

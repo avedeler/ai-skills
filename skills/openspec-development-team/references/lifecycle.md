@@ -64,6 +64,11 @@ worktrees. Keep separate-store ownership explicit and retain work through delive
 
 ## OpenSpec adapter
 
+This adapter builds on OpenSpec's workflow and skills by Fission AI and the
+OpenSpec contributors. See [attribution and upstream sources](../third_party/openspec/README.md)
+and the bundled [MIT license](../third_party/openspec/LICENSE). The following
+instructions adapt those workflows to this team's roles and evidence gates.
+
 1. Discover the repository's pinned command/wrapper and generated workflows.
    Read local rules first. On supported versions, `context --json` and
    `status --change <id> --json` identify the planning root, selected store,

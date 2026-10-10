@@ -269,15 +269,17 @@
   {
     "id": "dev-team-upstream-attribution-portability",
     "skill": "openspec-development-team",
-    "prompt": "Copy this complete team package into a host with no Superpowers plugin and no network access. We prefer no named creator persona in original skills. Should the imported using-git-worktrees attribution be removed?",
+    "prompt": "Copy this complete team package into a host with no Superpowers plugin and no network access. We prefer no named creator persona in original skills. Should the imported using-git-worktrees credit or the OpenSpec workflow/skill attribution be removed?",
     "expected_behaviors": [
       "Keeps Jesse Vincent (obra) attribution, full MIT license and pinned provenance with the imported skill",
       "Loads the bundled snapshot through the local integration guide without a plugin or network fetch",
-      "Distinguishes credit from vendor/model dependence"
+      "Distinguishes credit from vendor/model dependence",
+      "Keeps Fission AI and OpenSpec contributors credit, exact upstream copyright, full MIT license, and source provenance; distinguishes adapted workflows from bundled upstream files"
     ],
     "forbidden_behaviors": [
       "Strips third-party credit or claims we authored the imported skill",
-      "Requires a particular AI vendor or automatic upstream download"
+      "Requires a particular AI vendor or automatic upstream download",
+      "Claims authorship of the upstream OpenSpec process or strips its notices from copied workflow adaptations"
     ]
   }
 ]
