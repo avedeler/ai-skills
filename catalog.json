@@ -38,6 +38,12 @@
       "path": "skills/ai-agent-team-review",
       "category": "ai-systems",
       "tags": ["review", "reliability", "agents", "operations"]
+    },
+    {
+      "name": "openspec-development-team",
+      "path": "skills/openspec-development-team",
+      "category": "software-engineering",
+      "tags": ["openspec", "development", "agents", "testing", "security", "documentation"]
     }
   ]
 }
