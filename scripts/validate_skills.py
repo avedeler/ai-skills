@@ -7,6 +7,7 @@ check external URLs, or establish behavioral correctness.
 
 import argparse
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -27,6 +28,17 @@ def read_json(path: Path, errors: list[str]) -> object:
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         errors.append(f"{path.name}: cannot read JSON: {exc}")
         return None
+
+
+def markdown_paths(root: Path):
+    """Do not validate other checkouts inside conventional local worktree roots."""
+    for current, directories, filenames in os.walk(root):
+        directory = Path(current)
+        directories[:] = [name for name in directories if name != ".git"
+                          and not (directory == root and name in {".worktrees", "worktrees"})]
+        for filename in filenames:
+            if filename.endswith(".md"):
+                yield directory / filename
 
 
 def validate(root: Path) -> list[str]:
@@ -121,9 +133,7 @@ def validate(root: Path) -> list[str]:
         if not nonempty(description) or len(description) > 1024:
             errors.append(f"{label}: description must contain 1–1024 characters")
 
-    for path in sorted(root.rglob("*.md")):
-        if ".git" in path.relative_to(root).parts:
-            continue
+    for path in sorted(markdown_paths(root)):
         label = path.relative_to(root)
         try:
             content = path.read_text(encoding="utf-8")

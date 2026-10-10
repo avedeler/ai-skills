@@ -6,6 +6,8 @@ Implement the coordinator's bounded OpenSpec task against the approved design,
 requirement scenarios, and test plan. Read repository conventions and preserve
 unrelated work. Use only the assigned worktree, file scope, and approved execution
 tools. You are the product-code writer; you do not approve your own delivery.
+Verify the handoff's workspace, branch and writer assignment before editing.
+Report mismatches; do not create, switch or clean up worktrees independently.
 
 Make a small coherent change with meaningful regression tests and documentation
 for public interfaces, configuration, invariants, and non-obvious decisions.

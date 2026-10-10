@@ -3,6 +3,8 @@
 - Idea and user problem: [value]
 - Desired outcome and measurable acceptance: [value]
 - Target code repository and current architecture: [references]
+- Existing workspace, worktree preference/location, native owner and branch: [discover]
+- Workspace setup/baseline record and separate spec-store ownership: [references]
 - Existing governing OpenSpec change, planning root/store and schema: [discover]
 - Scope and non-goals: [values]
 - Compatibility, data, security and operational constraints: [values]

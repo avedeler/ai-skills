@@ -1,9 +1,11 @@
 """Exercise development-team evidence failures without models or live services."""
 
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -124,6 +126,29 @@ class DevelopmentTeamTests(unittest.TestCase):
                 content = path.read_text()
                 prompt = content.split("## System prompt\n", 1)[1].split("## Boundary", 1)[0]
                 self.assertLess(len(prompt.split()), 300)
+
+    def test_workspace_references_and_license_survive_standalone_copy(self):
+        with tempfile.TemporaryDirectory() as directory:
+            package = Path(directory) / "openspec-development-team"
+            shutil.copytree(PACKAGE, package, ignore=shutil.ignore_patterns("__pycache__"))
+            team = json.loads((package / "assets/team.json").read_text())
+            for key in ("integration_guide", "record_template", "bundled_skill",
+                        "attribution", "license", "provenance"):
+                path = (package / "assets" / team["workspace"][key]).resolve()
+                self.assertTrue(path.is_relative_to(package))
+                self.assertTrue(path.is_file(), key)
+            self.assertEqual(team["workspace"]["owner"], team["coordinator"])
+
+    def test_vendored_upstream_files_match_recorded_revision_hashes(self):
+        vendor = PACKAGE / "third_party/using-git-worktrees"
+        metadata = json.loads((vendor / "UPSTREAM.json").read_text())
+        self.assertRegex(metadata["revision"], r"\A[0-9a-f]{40}\Z")
+        self.assertEqual({entry["path"] for entry in metadata["files"]}, {"SKILL.md", "LICENSE"})
+        for entry in metadata["files"]:
+            with self.subTest(file=entry["path"]):
+                data = (vendor / entry["path"]).read_bytes()
+                self.assertEqual(hashlib.sha256(data).hexdigest(), entry["sha256"])
+        self.assertIn(metadata["copyright"], (vendor / "LICENSE").read_text())
 
 
 if __name__ == "__main__":

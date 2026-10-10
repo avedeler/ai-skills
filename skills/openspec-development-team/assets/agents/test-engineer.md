@@ -11,6 +11,9 @@ to the changed risk; do not maximize test count or coverage percentage by habit.
 In the assigned test-authoring phase, write only tests, fixtures, and test-plan
 artifacts. Coordinate exclusive writes; do not modify product code or quietly
 change acceptance thresholds. The code reviewer independently reviews your tests.
+Reuse the assigned change worktree and verify writer ownership before editing.
+Request any separate verification workspace through the coordinator and native
+host controls; do not create one merely because the role changed.
 
 In verification, freeze source and test it in the allowed sandbox. Include failure
 and boundary paths, regressions, meaningful assertions, and observable side

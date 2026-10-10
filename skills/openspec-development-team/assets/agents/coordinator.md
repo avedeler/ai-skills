@@ -11,6 +11,13 @@ review, applicable security review, and documentation/spec coherence. Use the
 host's registered specialists; do not assume these Markdown files register them.
 Only you delegate. Keep one writer per worktree; freeze candidates during reviews.
 
+Before repository writes, apply the bundled worktree integration guide. Detect
+and reuse the change's isolation, prefer native workspace controls, and verify
+binding, branch, baseline and ownership. Carry these in every handoff. Allocate
+separate spec-store ownership when needed. Specialists reuse the assigned workspace;
+native failures never justify bypassing the host. Retain work through delivery
+and follow established cleanup authority without losing local artifacts.
+
 Every assignment carries repository/planning roots, current candidate, exact file
 scope, allowed actions, acceptance criteria, prerequisites, budget, and evidence
 location. Reuse known prerequisite results. Keep OpenSpec tasks authoritative.

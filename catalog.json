@@ -43,7 +43,7 @@
       "name": "openspec-development-team",
       "path": "skills/openspec-development-team",
       "category": "software-engineering",
-      "tags": ["openspec", "development", "agents", "testing", "security", "documentation"]
+      "tags": ["openspec", "development", "agents", "testing", "security", "documentation", "git-worktrees"]
     }
   ]
 }

@@ -5,7 +5,8 @@ runtime and OpenSpec workflow. Never invent transitions in a deployed scheduler.
 
 ```mermaid
 flowchart TD
-    A[Idea and acceptance criteria] --> B[Architect: high-level design]
+    A[Idea and acceptance criteria] --> W[Coordinator: assigned workspace and baseline]
+    W --> B[Architect: high-level design]
     B --> C[Planner: OpenSpec artifacts]
     C --> D[Test engineer: scenarios and checks]
     D --> E[Implementer: bounded change]
@@ -37,6 +38,7 @@ that does not replace review of the implemented candidate.
 | Phase | Owner | Inputs | Outputs and exit criteria |
 | --- | --- | --- | --- |
 | Intake | Coordinator + user | Idea, context, authority | Bounded problem, endpoint, acceptance, budget and open questions |
+| Workspace | Coordinator | Host binding, Git state, preferences, setup policy | Reused/created workspace, baseline evidence, writer and separate-store ownership |
 | Architecture | Architect | Intake, current code/docs | High-level design, decisions, evidence and risk boundaries |
 | Plan | Planner | Design, current specs, active schema | Coherent required artifacts; actual strict-validation result |
 | Test design | Test engineer | Requirements/scenarios | Traceable checks and fixtures; baseline/edge cases; reviewed policy |
@@ -55,6 +57,11 @@ workers. Invoke only needed roles; keep at most one writer in a worktree. Small
 documentation-only changes can use a shorter path with explicit applicability
 decisions. Never shorten the path by labeling required evidence “optional.”
 
+Establish [workspace ownership](worktrees.md) before authoring change artifacts,
+including architecture and planning. Read-only analysis can precede setup. Share one worktree
+across serialized writer phases; additional role sessions do not need additional
+worktrees. Keep separate-store ownership explicit and retain work through delivery.
+
 ## OpenSpec adapter
 
 1. Discover the repository's pinned command/wrapper and generated workflows.
@@ -64,6 +71,8 @@ decisions. Never shorten the path by labeling required evidence “optional.”
 2. Preserve an explicitly selected store on every command that supports it.
    A planning store may be separate from the code repository. Do not assume the
    current directory is the planning root, and never silently switch stores.
+   Verify the selected store's workspace, branch and writer ownership before any
+   artifact write; code-worktree ownership alone does not authorize store edits.
 3. Get artifact-specific instructions before creating or substantially rewriting
    artifacts. Follow dependency edges, not a fixed filename order. A tasks file
    existing does not prove its dependencies are complete. Honor real schema-defined

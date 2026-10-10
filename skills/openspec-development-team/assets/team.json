@@ -7,13 +7,56 @@
   "max_concurrent_writers_per_worktree": 1,
   "default_max_failed_correction_rounds": 2,
   "roles": [
-    {"id": "coordinator", "prompt": "agents/coordinator.md", "purpose": "Own scope, sequencing, evidence, correction limits, and requested delivery."},
-    {"id": "architect", "prompt": "agents/architect.md", "purpose": "Turn the idea into a grounded high-level architecture and acceptance criteria."},
-    {"id": "planner", "prompt": "agents/planner.md", "purpose": "Maintain coherent OpenSpec planning artifacts and scenario traceability."},
-    {"id": "implementer", "prompt": "agents/implementer.md", "purpose": "Implement bounded tasks and correct confirmed defects."},
-    {"id": "test-engineer", "prompt": "agents/test-engineer.md", "purpose": "Design and author meaningful tests, then independently verify the candidate."},
-    {"id": "code-reviewer", "prompt": "agents/code-reviewer.md", "purpose": "Review code, tests, documentation, and conformance without editing implementation."},
-    {"id": "security-reviewer", "prompt": "agents/security-reviewer.md", "purpose": "Assess risk and review applicable security boundaries and findings."},
-    {"id": "documentation-steward", "prompt": "agents/documentation-steward.md", "purpose": "Keep architecture, documentation, change artifacts, and canonical specs coherent."}
-  ]
+    {
+      "id": "coordinator",
+      "prompt": "agents/coordinator.md",
+      "purpose": "Own scope, sequencing, evidence, correction limits, and requested delivery."
+    },
+    {
+      "id": "architect",
+      "prompt": "agents/architect.md",
+      "purpose": "Turn the idea into a grounded high-level architecture and acceptance criteria."
+    },
+    {
+      "id": "planner",
+      "prompt": "agents/planner.md",
+      "purpose": "Maintain coherent OpenSpec planning artifacts and scenario traceability."
+    },
+    {
+      "id": "implementer",
+      "prompt": "agents/implementer.md",
+      "purpose": "Implement bounded tasks and correct confirmed defects."
+    },
+    {
+      "id": "test-engineer",
+      "prompt": "agents/test-engineer.md",
+      "purpose": "Design and author meaningful tests, then independently verify the candidate."
+    },
+    {
+      "id": "code-reviewer",
+      "prompt": "agents/code-reviewer.md",
+      "purpose": "Review code, tests, documentation, and conformance without editing implementation."
+    },
+    {
+      "id": "security-reviewer",
+      "prompt": "agents/security-reviewer.md",
+      "purpose": "Assess risk and review applicable security boundaries and findings."
+    },
+    {
+      "id": "documentation-steward",
+      "prompt": "agents/documentation-steward.md",
+      "purpose": "Keep architecture, documentation, change artifacts, and canonical specs coherent."
+    }
+  ],
+  "workspace": {
+    "owner": "coordinator",
+    "default_scope": "one-worktree-per-change",
+    "native_tools_preferred": true,
+    "integration_guide": "../references/worktrees.md",
+    "record_template": "workspace.md",
+    "bundled_skill": "../third_party/using-git-worktrees/SKILL.md",
+    "attribution": "../third_party/using-git-worktrees/README.md",
+    "license": "../third_party/using-git-worktrees/LICENSE",
+    "provenance": "../third_party/using-git-worktrees/UPSTREAM.json"
+  }
 }

@@ -35,5 +35,7 @@ Prefer deterministic checks over model judgment for schema and arithmetic.
 
 Keep facts, assumptions, unknowns, and observed results distinct. Do not turn a
 proposed test into a pass or an architecture into a deployed system. Give enough
-source/version context for another model or human to verify the result. No named
-creator, persona, or proprietary product is needed to interpret these skills.
+source/version context for another model or human to verify the result. Original
+instructions must not depend on a named creator or persona. Credit third-party
+creators and preserve their licenses; attribution is provenance, not a required
+runtime, model, or provider.

@@ -17,6 +17,9 @@ Read [the lifecycle](references/lifecycle.md),
 [testing and correction](references/testing-and-correction.md), and
 [documentation and security gates](references/documentation-and-security.md).
 Use [the setup guide](references/setup.md) to install roles or map an existing team.
+For repository writes, follow [worktree integration](references/worktrees.md),
+which uses the bundled **using-git-worktrees** skill by **Jesse Vincent (obra)**
+from **Superpowers**, with [attribution and MIT license](third_party/using-git-worktrees/README.md).
 
 ## 1. Establish context and authority
 
@@ -37,6 +40,14 @@ Use a repository-pinned OpenSpec wrapper when present. Discover the installed CL
 version, active schema, artifact graph, roots, and available workflow skills;
 never assume every repository has the same generated commands. Do not install
 dependencies or access secrets merely because a skill mentions them.
+
+Before authoring change artifacts, the coordinator establishes or reuses the assigned
+workspace using the worktree guide: detect existing isolation, prefer the native
+owner, and use manual Git only when no native route exists and policy permits it.
+Honor existing worktree preferences without asking again. Record binding, branch,
+baseline evidence and writer ownership in [the workspace record](assets/workspace.md).
+Resolve a separate planning store's workspace too; architecture and spec writes
+need the same ownership discipline as product code.
 
 ## 2. Idea → high-level architecture
 
@@ -71,6 +82,7 @@ through the existing project policy, with owner and expiry where appropriate.
 ## 4. Implement and verify in bounded slices
 
 Assign the [implementer](assets/agents/implementer.md) one coherent task slice.
+Reuse the change's assigned worktree; verify its readiness and session binding.
 Allow one writer per branch/worktree at a time. The test engineer may author tests
 in a separate, serialized test-writing phase; the code reviewer checks those tests
 as well. Use a fresh verification context after implementation. Run code only in
@@ -132,6 +144,10 @@ required merge acceptance. Run sync to completion before archive; never race the
 Keep implemented, merged, deployed, and archived statuses distinct.
 
 ## 7. Deliver and measure
+
+Retain the worktree for correction and delivery. Include its final branch or
+durable checkpoint, candidate and cleanup owner in the handoff. Follow the native
+lifecycle where present; never remove a dirty or still-used workspace to finish.
 
 Use [the handoff template](assets/handoff.md) and
 [review report](assets/review-report.md). The optional bundled

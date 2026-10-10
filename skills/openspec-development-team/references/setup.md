@@ -7,6 +7,10 @@ Copy this complete skill package to the host's supported skill location. Load
 [team.json](../assets/team.json) contains a copyable system prompt and boundary
 examples. The manifest is a role inventory, not an executable scheduler config.
 
+Keep the bundled `third_party/using-git-worktrees/` directory, attribution and MIT
+license with every copy. Load [worktree integration](worktrees.md) before writes;
+it uses the upstream skill without requiring a separately installed plugin.
+
 Register the roles using the chosen host's native agent mechanism. Keep provider,
 model, credentials, and deployment paths in that host's configuration. Choose
 models by tested capability: architecture/planning needs coherent reasoning,
@@ -25,7 +29,7 @@ and independent review uncommissioned.
 
 | Role | Minimal capabilities | Writes | Explicit exclusions |
 | --- | --- | --- | --- |
-| Coordinator | Context, dispatch, status, approved Git/PR delivery | Evidence; requested delivery | Granting new authority or approving its own review |
+| Coordinator | Context, dispatch, approved workspace lifecycle, Git/PR delivery | Evidence; requested delivery | Granting new authority or approving its own review |
 | Architect | Read source/docs and approved reference lookup | Design/decision docs | Application implementation or deployment |
 | Planner | Repository-pinned OpenSpec workflows | Assigned planning artifacts | Product code and silent intent changes |
 | Implementer | Source editing and approved test execution | Assigned code/tests/docs | Review approval, policy weakening, live operations |
@@ -48,6 +52,12 @@ test runner, dependency scanner, architecture/reference checker, and spec valida
 when they exist. A tool mentioned in a repository is not proof it is installed or
 commissioned; verify availability during adoption.
 
+Map the native workspace allocator, session-binding check, writer claim, snapshot
+mechanism and cleanup owner before enabling writes. Reuse valid existing isolation.
+If native allocation fails, preserve its blocker instead of creating an unmanaged
+worktree. Manual Git is only for hosts without a native mechanism that permit it.
+Verify baseline handling and branch ownership, including separate planning stores.
+
 Record per-host registration, permission mappings, exact commands, check policy,
 and candidate/evidence adapters in the target private project when appropriate.
 This public package deliberately contains no organization-specific infrastructure,
@@ -57,7 +67,7 @@ repository snapshots, or private configuration.
 
 | Phase | Work | Exit evidence |
 | --- | --- | --- |
-| First setup | Map roles to host, register prompts, confirm tools and permissions | Actual discovery and denied-action checks |
+| First setup | Map roles, register prompts, confirm tools, permissions and workspace lifecycle | Actual binding, baseline, writer exclusion and denied-action checks |
 | First plan | Choose one small change and produce architecture/OpenSpec/test plan | Owner-approved scope and coherent artifacts |
 | First implementation | Run bounded implementation and tests | Actual reproducible results on the candidate |
 | Review loop | Exercise independent review and one seeded defect | Defect detected, corrected, and verified within limits |

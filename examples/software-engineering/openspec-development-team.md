@@ -38,6 +38,13 @@ These are eight on-demand roles, not eight concurrent workers. Each has differen
 inputs or authority; no lead is added beyond the coordinator. A small docs change
 uses a shorter path. One writer at a time avoids conflicting changes.
 
+The coordinator establishes workspace ownership before repository writes. Roles
+share the change's worktree across serialized authoring phases; read-only reviews
+use a frozen candidate. Native workspace tools take priority, and a separate
+planning store gets its own branch/ownership mapping. Baseline evidence and later
+candidate checks stay distinct. See [worktree integration](../../skills/openspec-development-team/references/worktrees.md)
+and [the attributed upstream skill](../../skills/openspec-development-team/third_party/using-git-worktrees/README.md).
+
 ## 3. Prompts and reusable assignments
 
 [The role manifest](../../skills/openspec-development-team/assets/team.json) lists
