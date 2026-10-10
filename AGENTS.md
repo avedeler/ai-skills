@@ -14,6 +14,9 @@ multiple categories. Read the relevant package before editing it.
 - Preserve vendor/model neutrality. Describe required capabilities, not an assumed
   provider, version, client, paid service, or installed integration. Optional
   adapters must be clearly separated from the portable instructions.
+- Keep host-specific bindings under `adapters/<skill-name>/`. Load role prompts
+  from the canonical skill package instead of maintaining host-specific copies.
+  Model selection belongs in adapter settings, not in core role instructions.
 - Keep original skills independent of named creators or personas. Preserve creator
   attribution, provenance, and license notices for third-party material; bundle
   those notices inside every package that redistributes it.

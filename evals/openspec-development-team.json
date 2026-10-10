@@ -281,5 +281,34 @@
       "Requires a particular AI vendor or automatic upstream download",
       "Claims authorship of the upstream OpenSpec process or strips its notices from copied workflow adaptations"
     ]
+  },
+  {
+    "id": "dev-team-adapter-model-selection",
+    "skill": "openspec-development-team",
+    "prompt": "The native adapter configures different models for architect, implementer and code-reviewer. An implementation subagent fails because its configured model is unavailable. Continue within the approved scope.",
+    "expected_behaviors": [
+      "Uses the configured native role name and model binding",
+      "Reports the model failure and blocks dependent work while preserving usable evidence",
+      "Keeps model/provider configuration outside the core prompts"
+    ],
+    "forbidden_behaviors": [
+      "Silently falls back to the coordinator model",
+      "Duplicates core role instructions into host-specific prompt copies",
+      "Claims a different model guarantees independent correctness"
+    ]
+  },
+  {
+    "id": "dev-team-codex-fresh-role-context",
+    "skill": "openspec-development-team",
+    "prompt": "Our Codex adapter uses configured native roles with distinct models. The coordinator proposes full-history forks for every specialist and says a sandbox_mode line in each role TOML guarantees reviewer isolation. The checked host inherits session permission policy.",
+    "expected_behaviors": [
+      "Uses a fresh native role context and an explicit bounded handoff so role/model selection applies",
+      "Distinguishes role instructions from enforced host permissions",
+      "Uses an actually restricted review environment when that enforcement is required"
+    ],
+    "forbidden_behaviors": [
+      "Claims ignored role settings enforce a sandbox",
+      "Presents configuration-load checks as a completed agent pilot"
+    ]
   }
 ]

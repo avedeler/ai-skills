@@ -55,3 +55,9 @@ python3 -m unittest discover -s tests
 
 The CI workflow runs the same dependency-free check. Add dependencies only when
 they have a concrete benefit and documented installation requirements.
+
+Optional host adapters live under `adapters/<skill-name>/` and reference the core
+package. Keep native registration, model selection and launch configuration there;
+do not duplicate role prompts, workflow decisions or third-party material. Use
+Python 3.11+ for the full repository test suite. Document verified host versions
+and distinguish native configuration checks from a live agent pilot.
