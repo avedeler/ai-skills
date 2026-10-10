@@ -1,7 +1,8 @@
 # Development team blueprint
 
 This is a portable team design and implementation package. The role prompts and
-readiness-checker code exist; no agent runtime has been installed or pilot run.
+readiness-checker code and [native host adapters](../../adapters/openspec-development-team/README.md)
+exist; no agent runtime has been deployed or model-assisted pilot run.
 All sample evidence is synthetic. No business savings or model performance has
 been measured.
 

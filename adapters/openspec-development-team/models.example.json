@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "codex": {
+    "coordinator": {},
+    "architect": {},
+    "planner": {},
+    "implementer": {},
+    "test-engineer": {},
+    "code-reviewer": {},
+    "security-reviewer": {},
+    "documentation-steward": {}
+  },
+  "opencode": {
+    "coordinator": {},
+    "architect": {},
+    "planner": {},
+    "implementer": {},
+    "test-engineer": {},
+    "code-reviewer": {},
+    "security-reviewer": {},
+    "documentation-steward": {}
+  }
+}

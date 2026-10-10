@@ -59,7 +59,9 @@ For a dedicated development team, load `openspec-development-team`:
 
 The [development team blueprint](examples/software-engineering/openspec-development-team.md)
 links the eight portable role prompts, setup guidance, testing strategy, and
-optional readiness checker. Runtime registration and a live pilot are later steps.
+optional readiness checker. The [Codex and OpenCode adapters](adapters/openspec-development-team/README.md)
+provide native role registration and per-agent model settings while loading these
+shared prompts. Host permissions, project tools and a live pilot still need verification.
 Its workflow builds on **OpenSpec** by **Fission AI and the OpenSpec contributors**;
 [OpenSpec attribution, skill sources and MIT license](skills/openspec-development-team/third_party/openspec/README.md)
 are included in the package.
@@ -83,6 +85,7 @@ examples/<category>/         # Worked examples; not runtime dependencies
 evals/<skill-name>.json       # Behavioral evaluation scenarios per skill
 scripts/validate_skills.py   # Dependency-free catalog/package validation
 docs/                        # Format and portability guidance
+adapters/<skill-name>/        # Optional native host bindings; reference core skills
 ```
 
 Packages use a flat directory of globally unique names so they can be copied to
@@ -106,7 +109,7 @@ optional and explicit.
 
 ## Validate and evaluate
 
-Python 3.10 or newer is sufficient for static validation:
+Python 3.11 or newer runs all repository checks, including the optional adapters:
 
 ```sh
 python3 scripts/validate_skills.py

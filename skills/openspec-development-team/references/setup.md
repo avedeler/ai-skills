@@ -7,6 +7,12 @@ Copy this complete skill package to the host's supported skill location. Load
 [team.json](../assets/team.json) contains a copyable system prompt and boundary
 examples. The manifest is a role inventory, not an executable scheduler config.
 
+The source repository provides optional Codex and OpenCode adapters that generate
+native role registrations and per-agent model settings from these shared files.
+They are separate installation tooling; this portable skill also works with
+manually mapped roles or another host. Keep the package available at the path
+referenced by an adapter, and restart sessions after updating shared instructions.
+
 Keep the entire bundled `third_party/` directory with every copy, including
 [OpenSpec attribution](../third_party/openspec/README.md) and
 [Superpowers attribution](../third_party/using-git-worktrees/README.md), source
