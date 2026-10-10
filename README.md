@@ -10,6 +10,7 @@ particular AI vendor, model, assistant application, or agent framework.
 | --- | --- | --- |
 | AI systems | [ai-agent-team-architect](skills/ai-agent-team-architect/SKILL.md) | Design one business workflow, choose the smallest useful architecture, and specify prompts, handoffs, tools, costs, tests, and rollout |
 | AI systems | [ai-agent-team-review](skills/ai-agent-team-review/SKILL.md) | Review a proposed or running workflow, identify failure and evidence gaps, and assess readiness for the next stage |
+| Software engineering | [openspec-development-team](skills/openspec-development-team/SKILL.md) | Coordinate eight dedicated development roles from idea and architecture through OpenSpec, tests, bounded correction, reviews, and documentation/spec sync |
 
 The machine-readable [catalog](catalog.json) is the discovery index. It supports
 AI systems, software engineering, research, writing, data analysis, operations,
@@ -48,6 +49,25 @@ These two skills create plans and reviews. They can guide authorized
 implementation, but a plan alone does not deploy an agent team. See the
 [worked synthetic example](examples/ai-systems/newsletter-workflow.md) for the
 expected artifacts and an honest treatment of untested assumptions.
+
+For a dedicated development team, load `openspec-development-team`:
+
+> Take this idea through high-level architecture and the repository's OpenSpec
+> process. Use dedicated implementation, test, code-review, applicable security,
+> and documentation/spec roles. Keep correction bounded and deliver evidence for
+> the exact candidate. Stop at the stages I authorize.
+
+The [development team blueprint](examples/software-engineering/openspec-development-team.md)
+links the eight portable role prompts, setup guidance, testing strategy, and
+optional readiness checker. Runtime registration and a live pilot are later steps.
+Its workflow builds on **OpenSpec** by **Fission AI and the OpenSpec contributors**;
+[OpenSpec attribution, skill sources and MIT license](skills/openspec-development-team/third_party/openspec/README.md)
+are included in the package.
+The team uses [worktree integration](skills/openspec-development-team/references/worktrees.md)
+to reuse existing isolation, prefer native workspace tools, and serialize writers.
+It bundles **using-git-worktrees** from **Superpowers** by **Jesse Vincent (obra)**
+under the MIT License. See [third-party notices](THIRD_PARTY_NOTICES.md) for the
+pinned source and license; preserve these files when copying the package.
 
 ## Repository structure
 

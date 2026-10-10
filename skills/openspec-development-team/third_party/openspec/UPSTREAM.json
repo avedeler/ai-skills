@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "project": "OpenSpec",
+  "creator": "Fission AI and the OpenSpec contributors",
+  "repository": "https://github.com/Fission-AI/OpenSpec",
+  "revision": "9111a7654d7800391459431fff4eaf66e33a3d2e",
+  "retrieved_on": "2026-10-10",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2024 OpenSpec Contributors",
+  "usage": "Workflow and skill adaptations; upstream CLI and generated skill source files are not bundled.",
+  "revision_scope": "Pinned attribution references, not a required runtime version or a claim about the original integration source revision.",
+  "local_modifications": "LICENSE is unmodified. Dedicated roles, orchestration and evidence gates are local integration instructions.",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "sha256": "c3c7235bea1214ab62df643473975c2e8b8848f528901a976693f7d069713e64"
+    }
+  ],
+  "referenced_sources": [
+    {
+      "upstream_path": "skills/openspec-propose/SKILL.md",
+      "sha256": "7848351e7c513a25c32315b466b224ed228ceb43c75b914c145702aa9957ff0b"
+    },
+    {
+      "upstream_path": "skills/openspec-apply-change/SKILL.md",
+      "sha256": "40fc0655ae650213a130f376eed1475527d6c65cdc32973754449776a3227152"
+    },
+    {
+      "upstream_path": "skills/openspec-update-change/SKILL.md",
+      "sha256": "819f15652d398877045a8dd103b117df0d802e91225c88edfe0627dbcdb27bf6"
+    },
+    {
+      "upstream_path": "skills/openspec-verify-change/SKILL.md",
+      "sha256": "76a04af7b5926b6b3266627f26b42df58d8a4084712a686b4aa658114212358c"
+    },
+    {
+      "upstream_path": "skills/openspec-sync-specs/SKILL.md",
+      "sha256": "474952afb40497c5cb756e5654ddc901619de6b3bd57aaa03fb11d2611a99da3"
+    },
+    {
+      "upstream_path": "skills/openspec-archive-change/SKILL.md",
+      "sha256": "b080e65449e9895fb63964c811168943bf99cb131a378b6a9937ed519ae4d37f"
+    }
+  ]
+}

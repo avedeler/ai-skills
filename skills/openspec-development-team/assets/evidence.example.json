@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "author_sessions": [
+    "synthetic-implementation",
+    "synthetic-test-author"
+  ],
+  "planning": {
+    "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "status": "passed",
+    "evidence": "synthetic-fixture:planning"
+  },
+  "tasks": {
+    "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "status": "passed",
+    "evidence": "synthetic-fixture:tasks"
+  },
+  "checks": {
+    "spec-validation": {
+      "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": "passed",
+      "evidence": "synthetic-fixture:spec-validation",
+      "exit_code": 0
+    },
+    "unit": {
+      "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": "passed",
+      "evidence": "synthetic-fixture:unit",
+      "exit_code": 0
+    },
+    "integration": {
+      "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": "passed",
+      "evidence": "synthetic-fixture:integration",
+      "exit_code": 0
+    },
+    "docs-validation": {
+      "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": "passed",
+      "evidence": "synthetic-fixture:docs-validation",
+      "exit_code": 0
+    }
+  },
+  "traceability": [
+    {
+      "requirement": "REQ-EXPORT",
+      "scenario": "SCN-valid-input",
+      "check": "integration",
+      "test_ref": "synthetic-tests:SCN-valid-input",
+      "doc_ref": "synthetic-docs:export"
+    },
+    {
+      "requirement": "REQ-EXPORT",
+      "scenario": "SCN-reject-invalid",
+      "check": "unit",
+      "test_ref": "synthetic-tests:SCN-reject-invalid",
+      "doc_ref": "synthetic-docs:export"
+    }
+  ],
+  "code_review": {
+    "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "status": "passed",
+    "evidence": "synthetic-fixture:code-review",
+    "session_id": "synthetic-independent-reviewer"
+  },
+  "security": {
+    "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "triage": "complete",
+    "triggers": [],
+    "rationale": "Synthetic local formatting example with no data, dependency or permission boundary change; not a real assessment.",
+    "review": null
+  },
+  "documentation": {
+    "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "status": "passed",
+    "evidence": "synthetic-fixture:documentation"
+  },
+  "spec_sync": {
+    "candidate": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "status": "verified",
+    "evidence": "synthetic-fixture:sync-comparison",
+    "delta_count": 1,
+    "remaining_deltas": 0,
+    "idempotent": true
+  },
+  "findings": [],
+  "correction": {
+    "failed_rounds": 0,
+    "stalled": false
+  }
+}

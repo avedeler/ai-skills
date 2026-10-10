@@ -28,8 +28,12 @@ Use capability requirements and explicit input/output contracts. Do not assume
 that planning a workflow authorizes executing it. Preserve existing authorization
 and avoid redundant approval prompts.
 
-Do not add named creator attribution. Keep reusable instructions independent of
-a persona or individual. Separate synthetic examples from real results.
+Keep original skills independent of a persona or individual. Third-party skills
+must retain creator attribution and applicable license notices. Pin imported
+material to an immutable revision, record its source and local modifications,
+and include its license and provenance inside the consuming package so they
+travel with copies. Update [third-party notices](THIRD_PARTY_NOTICES.md) when
+adding or changing an import. Separate synthetic examples from real results.
 
 ## Review changes
 

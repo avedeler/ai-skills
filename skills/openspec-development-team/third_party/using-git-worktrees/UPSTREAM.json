@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "project": "Superpowers",
+  "skill": "using-git-worktrees",
+  "creator": "Jesse Vincent (obra)",
+  "repository": "https://github.com/obra/superpowers",
+  "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "retrieved_on": "2026-10-10",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2025 Jesse Vincent",
+  "local_modifications": "None. Integration guidance is maintained separately in references/worktrees.md.",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "upstream_path": "skills/using-git-worktrees/SKILL.md",
+      "sha256": "8cfb86f121269e8f7f12361e6795c4f6738828340e28964c9229d365666c9edd"
+    },
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "sha256": "a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400"
+    }
+  ]
+}

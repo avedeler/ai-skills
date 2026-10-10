@@ -59,6 +59,21 @@ class CatalogTests(unittest.TestCase):
             document.write("\n[Required instructions](references/missing.md)\n")
         self.assertTrue(any("missing local link" in e for e in validator.validate(self.root)))
 
+    def test_local_worktrees_do_not_contaminate_package_validation(self):
+        for name in (".worktrees", "worktrees"):
+            checkout = self.root / name / "unrelated-change"
+            checkout.mkdir(parents=True)
+            (checkout / "README.md").write_text("[Unrelated broken link](missing.md)\n")
+        self.assertEqual(validator.validate(self.root), [])
+
+    def test_worktree_named_package_subdirectories_are_still_validated(self):
+        for name in (".worktrees", "worktrees"):
+            directory = self.package / name
+            directory.mkdir()
+            (directory / "README.md").write_text("[Required reference](missing.md)\n")
+        errors = validator.validate(self.root)
+        self.assertEqual(sum("missing local link" in error for error in errors), 2)
+
     def test_catalog_path_cannot_target_another_package(self):
         self.catalog["skills"][0]["path"] = "skills/something-else"
         self.write_catalog()
