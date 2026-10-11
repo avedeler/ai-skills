@@ -175,6 +175,14 @@ def preflight_generated(output, host, files):
     """Refuse to replace user files or edited outputs; never edit host configs."""
     if any(path.is_symlink() for path in (output, *output.parents)):
         raise ValueError("output directory must not traverse a symlink")
+    if any(path.exists() and not path.is_dir() for path in (output, *output.parents)):
+        raise ValueError("output directory has a non-directory ancestor")
+    for name in (*files, MARKER):
+        path = output / name
+        if path.exists() and not path.is_file():
+            raise ValueError(f"generated file path is not a regular file: {name}")
+        if any(parent.exists() and not parent.is_dir() for parent in path.parents):
+            raise ValueError(f"generated file has a non-directory parent: {name}")
     existing = {}
     if output.exists():
         if not output.is_dir():

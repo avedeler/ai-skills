@@ -183,6 +183,56 @@ class InstallTests(unittest.TestCase):
             self.install()
         self.assertEqual(before, [snapshot(p) for p in paths])
 
+    def test_predictable_path_failures_preflight_all_writes(self):
+        cases = ('output-ancestor', 'registration-ancestor', 'opencode.json',
+                 'config.toml', 'adapter-manifest.json', 'roles')
+        original_project = self.project
+        for case in cases:
+            with self.subTest(case=case):
+                self.project = original_project / case
+                (self.project / '.team').mkdir(parents=True)
+                self.config = self.project / '.team/install.json'
+                self.value['registration'] = '.agents/skills/openspec-development-team'
+                self.value['upstream']['revision'] = self.a
+                self.value['runtimes'][1] = {'name': 'other', 'host': 'opencode',
+                                            'output': '.tools/runtime/other'}
+                self.save()
+                self.install()
+                self.value['upstream']['revision'] = self.b
+                if case == 'registration-ancestor':
+                    obstacle = self.project / 'blocked-registration'
+                    obstacle.write_bytes(b'preserve ancestor')
+                    self.value['registration'] = 'blocked-registration/skill'
+                elif case == 'output-ancestor':
+                    obstacle = self.project / 'blocked-output'
+                    obstacle.write_bytes(b'preserve ancestor')
+                    self.value['runtimes'][1]['output'] = 'blocked-output/runtime'
+                else:
+                    self.value['runtimes'][1]['output'] = '.tools/runtime/fresh'
+                    if case in ('config.toml', 'roles'):
+                        self.value['runtimes'][1]['host'] = 'codex'
+                    obstacle = self.project / '.tools/runtime/fresh' / case
+                    obstacle.parent.mkdir(parents=True)
+                    if case == 'roles':
+                        obstacle.write_bytes(b'preserve parent')
+                    else:
+                        obstacle.mkdir()
+                self.save()
+                before = snapshot(self.project)
+                with self.assertRaises(ValueError):
+                    self.install()
+                after = snapshot(self.project)
+                new_cache = '.tools/ai-skills/' + self.b + '/'
+                after = {key: value for key, value in after.items() if not key.startswith(new_cache)}
+                self.assertEqual(before, after)
+                self.assertTrue(obstacle.exists())
+
+    def test_incompatible_adapter_has_explicit_error(self):
+        self.install()
+        with patch.object(setup, 'adapter_for', return_value=object()):
+            with self.assertRaisesRegex(ValueError, 'incompatible.*preflight_generated'):
+                self.install('verify')
+
     def test_foreign_registration_preserved(self):
         registration = self.project / self.value['registration']
         registration.parent.mkdir(parents=True)

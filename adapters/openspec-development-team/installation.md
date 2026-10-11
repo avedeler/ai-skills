@@ -43,8 +43,10 @@ severity overrides are never used. Inherited `GIT_*` variables are cleared.
 Clone uses trusted Git/network transports; OS, Python, Git, SSH and host credentials
 remain trusted components, and this is not a hostile-process sandbox.
 
-Add the configured cache and generated outputs, and `.team/installation.json`
+Add the configured cache, generated outputs, optional generated registration link,
+and `.team/installation.json`
 (or `installation.json` beside a differently located config), to project ignores.
+The registration link points at an absolute machine-specific cache path.
 Track the installer/config/model inputs and provenance. The small generated
 receipt records the registration target this installation owns. Installation
 refuses foreign registrations or edited generated outputs. Change the pin to

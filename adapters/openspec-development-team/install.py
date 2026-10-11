@@ -239,6 +239,8 @@ def install(project, config, action='install'):
     receipt = json.loads(receipt_path.read_text()) if receipt_path.exists() else None
     if registration:
         safe_path(registration.parent)
+        if any(path.exists() and not path.is_dir() for path in registration.parents):
+            raise ValueError('registration has a non-directory ancestor')
         if registration.is_symlink():
             target = os.readlink(registration)
             target_path = Path(target)
@@ -256,6 +258,8 @@ def install(project, config, action='install'):
         elif action == 'verify':
             raise ValueError('skill registration missing')
     adapter = adapter_for(cache)
+    if not callable(getattr(adapter, 'preflight_generated', None)):
+        raise ValueError('pinned adapter is incompatible: callable preflight_generated is required')
     team = adapter.load_team(package)
     plans = []
     for runtime in runtimes:
