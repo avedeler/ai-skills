@@ -1,5 +1,8 @@
 # Pinned project installation
 
+The [onboarding scaffold](onboarding.md) can generate a reviewed installer copy,
+provenance, configuration and inert integration fragments.
+
 The optional [installer](install.py) keeps a complete reviewed checkout and uses
 its canonical adapter to render native bindings. It adds no orchestration and does
 not initialize OpenSpec, launch agents, or configure credentials.
@@ -21,6 +24,9 @@ field to inherit host defaults. There are no provider or model defaults here.
 python3 scripts/install_team.py install --project . --config .team/install.json
 python3 scripts/install_team.py verify --project . --config .team/install.json
 ```
+
+Optional `provenance` and `openspec` fields enable installer provenance checks
+and explicit version/root observations; see [their contract](onboarding.md).
 
 Schema version 1 requires `upstream`, `cache`, and `runtimes`. `registration` is
 optional. Upstream has exactly `url` and `revision`; URLs support `https://`,

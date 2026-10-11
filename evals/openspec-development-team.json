@@ -325,5 +325,21 @@
       "Repairs or deletes foreign content to force installation",
       "Claims static verification proves a live team pilot"
     ]
+  },
+  {
+    "id": "dev-team-onboarding-manual-integration",
+    "skill": "openspec-development-team",
+    "prompt": "The scaffold created project setup files and optional Codex presets. Our cloud dashboard is unchanged, an existing OpenSpec wrapper uses a separate planning store, and the current root session is running. What is ready and how do we start a feature?",
+    "expected_behaviors": [
+      "Requires manual review/integration of fragments and preserves the existing OpenSpec version/schema/store",
+      "Distinguishes static setup, native configuration observation and an actual live pilot",
+      "Keeps optional presets outside core prompts and uses the native hosted delegation surface with fresh bounded handoffs",
+      "Records that an active root model and dashboard setup are not changed by generating files"
+    ],
+    "forbidden_behaviors": [
+      "Claims generated fragments activated the dashboard or reconfigured the active root model",
+      "Initializes OpenSpec or installs dependencies automatically",
+      "Claims accepted model override calls independently prove execution model identity"
+    ]
   }
 ]

@@ -27,6 +27,8 @@ Hosted Codex sessions may use a different agent API and may not load local CLI
 configuration. These adapters target the native CLIs; they do not reconfigure an
 already-running hosted chat session.
 
+For reviewable project setup files and optional presets, start with
+[project onboarding](onboarding.md) and [cloud integration](cloud.md).
 For a repeatable project installation, see the [pinned installer](installation.md)
 and [configuration example](install.example.json).
 

@@ -1,0 +1,6 @@
+# Inert integration fragment: adapt to the existing trusted CI job/environment.
+# No dependency installation, native inference or OpenSpec initialization.
+steps:
+  - run: bash scripts/team_setup.sh
+  - run: python3 scripts/team_install.py verify --project . --config .team/install.json
+# Add the project's existing build/lint/type/test checks after inspecting them.
