@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path
 import re
+import stat
 import subprocess
 import sys
 import tomllib
@@ -170,16 +171,27 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def write_generated(output, host, package, files):
+def preflight_generated(output, host, files):
     """Refuse to replace user files or edited outputs; never edit host configs."""
     if any(path.is_symlink() for path in (output, *output.parents)):
         raise ValueError("output directory must not traverse a symlink")
+    if any(path.exists() and not path.is_dir() for path in (output, *output.parents)):
+        raise ValueError("output directory has a non-directory ancestor")
+    for name in (*files, MARKER):
+        path = output / name
+        if path.exists() and not path.is_file():
+            raise ValueError(f"generated file path is not a regular file: {name}")
+        if any(parent.exists() and not parent.is_dir() for parent in path.parents):
+            raise ValueError(f"generated file has a non-directory parent: {name}")
     existing = {}
     if output.exists():
         if not output.is_dir():
             raise ValueError("output must be a directory")
         if any(path.is_symlink() for path in output.rglob("*")):
             raise ValueError("generated output contains a symlink")
+        if any(not (stat.S_ISREG(p.lstat().st_mode) or stat.S_ISDIR(p.lstat().st_mode))
+               for p in output.rglob("*")):
+            raise ValueError("generated output contains a special file")
         present = {p.relative_to(output).as_posix() for p in output.rglob("*") if p.is_file()}
         if present:
             if MARKER not in present:
@@ -195,6 +207,11 @@ def write_generated(output, host, package, files):
                     raise ValueError(f"generated file was edited: {name}; use a new output directory")
             if set(existing) - set(files):
                 raise ValueError("generated layout changed; use a new output directory")
+
+
+def write_generated(output, host, package, files):
+    """Validate ownership before writing generated bindings."""
+    preflight_generated(output, host, files)
     output.mkdir(parents=True, exist_ok=True)
     for name, content in files.items():
         path = output / name

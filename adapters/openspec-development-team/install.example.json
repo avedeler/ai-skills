@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "upstream": {
+    "url": "https://github.com/avedeler/ai-skills.git",
+    "revision": "0000000000000000000000000000000000000000"
+  },
+  "cache": ".tools/ai-skills",
+  "registration": ".agents/skills/openspec-development-team",
+  "runtimes": [
+    {
+      "name": "default",
+      "host": "codex",
+      "models": ".team/models.json",
+      "output": ".tools/team-runtime/default"
+    },
+    {
+      "name": "opencode",
+      "host": "opencode",
+      "models": ".team/models.json",
+      "output": ".tools/team-runtime/opencode"
+    }
+  ]
+}
