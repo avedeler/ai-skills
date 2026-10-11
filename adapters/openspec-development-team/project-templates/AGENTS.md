@@ -1,6 +1,10 @@
 # Development team integration fragment
 
 Integrate this fragment into the existing project instructions after review.
+Read `.team/README.md` for setup, verification and launch commands. Read the
+selected host's preferences in `.team/models.json` when applying supported native
+specialist model overrides. Check actual availability; generated CLI bindings do
+not reconfigure an active hosted coordinator or activate unsupported capabilities.
 Load `.agents/skills/openspec-development-team/SKILL.md` and resolve linked role
 prompts from the canonical source package. Use the repository's existing OpenSpec
 wrapper, schema and planning store. Setup alone does not initialize that workflow.
