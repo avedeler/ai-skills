@@ -1,0 +1,4 @@
+# Integrate after review; keep installer/config/models/provenance tracked.
+/.tools/
+/.agents/skills/openspec-development-team
+/.team/installation.json

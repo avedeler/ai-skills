@@ -62,7 +62,10 @@ links the eight portable role prompts, setup guidance, testing strategy, and
 optional readiness checker. The [Codex and OpenCode adapters](adapters/openspec-development-team/README.md)
 provide native role registration and per-agent model settings while loading these
 shared prompts. The optional [pinned project installer](adapters/openspec-development-team/installation.md)
-verifies a complete reviewed checkout before rendering. Host permissions, project tools and a live pilot still need verification.
+verifies a complete reviewed checkout before rendering.
+[Project onboarding](adapters/openspec-development-team/onboarding.md) generates
+reviewable setup files; [cloud guidance](adapters/openspec-development-team/cloud.md)
+explains manual integration and hosted-session limits. Host permissions, project tools and a live pilot still need verification.
 Its workflow builds on **OpenSpec** by **Fission AI and the OpenSpec contributors**;
 [OpenSpec attribution, skill sources and MIT license](skills/openspec-development-team/third_party/openspec/README.md)
 are included in the package.

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Install or verify a reviewed, pinned full checkout. Python 3.11+, stdlib only."""
 import argparse
+import hashlib
 import importlib.util
 import json
 import os
@@ -11,10 +12,12 @@ import stat
 import subprocess
 import sys
 import tempfile
+import tomllib
 from urllib.parse import urlsplit
 
 PACKAGE = 'skills/openspec-development-team'
 ADAPTER = 'adapters/openspec-development-team/adapter.py'
+INSTALLER = 'adapters/openspec-development-team/install.py'
 
 
 def command(args, *, cwd=None, env=None):
@@ -58,15 +61,7 @@ def keys(value, allowed, required):
         raise ValueError('unknown or missing configuration fields')
 
 
-def load_config(project, config):
-    if not config.is_file() or not stat.S_ISREG(config.stat().st_mode):
-        raise ValueError('config must be a regular file')
-    value = json.loads(config.read_text(encoding='utf-8'))
-    keys(value, ('schema_version', 'upstream', 'cache', 'registration', 'runtimes'),
-         ('schema_version', 'upstream', 'cache', 'runtimes'))
-    if type(value['schema_version']) is not int or value['schema_version'] != 1:
-        raise ValueError('schema_version must be 1')
-    pin = value['upstream']
+def validate_pin(pin):
     keys(pin, ('url', 'revision'), ('url', 'revision'))
     if not isinstance(pin['revision'], str) or not re.fullmatch('[0-9a-f]{40}', pin['revision']):
         raise ValueError('revision must be a full lowercase 40-character commit')
@@ -78,6 +73,18 @@ def load_config(project, config):
         raise ValueError('use an https://, ssh:// or file:// upstream URL')
     if parsed.scheme == 'file' and (parsed.netloc not in ('', 'localhost') or not parsed.path.startswith('/')):
         raise ValueError('file URL must name a local absolute path')
+
+
+def load_config(project, config):
+    if not config.is_file() or not stat.S_ISREG(config.stat().st_mode):
+        raise ValueError('config must be a regular file')
+    value = json.loads(config.read_text(encoding='utf-8'))
+    keys(value, ('schema_version', 'upstream', 'cache', 'registration', 'runtimes', 'provenance', 'openspec'),
+         ('schema_version', 'upstream', 'cache', 'runtimes'))
+    if type(value['schema_version']) is not int or value['schema_version'] != 1:
+        raise ValueError('schema_version must be 1')
+    pin = value['upstream']
+    validate_pin(pin)
     cache_parent = relative(project, value['cache'])
     cache = cache_parent / pin['revision']
     registration = relative(project, value['registration'], allow_link=True) if 'registration' in value else None
@@ -105,11 +112,47 @@ def load_config(project, config):
                 paths.append(item['models'])
         paths.append(item['output'])
         runtimes.append(item)
+    if 'provenance' in value:
+        provenance = relative(project, value['provenance'])
+        record, installed = provenance_record(project, provenance)
+        paths.extend((provenance, installed))
+    if 'openspec' in value:
+        observation = value['openspec']
+        keys(observation, ('command', 'root', 'version'), ('command', 'root', 'version'))
+        args = observation['command']
+        if not isinstance(args, list) or not args or any(
+                not isinstance(arg, str) or not arg or any(ord(c) < 32 for c in arg) for arg in args):
+            raise ValueError('OpenSpec command must be a nonempty literal argument list')
+        paths.extend((relative(project, args[0]), relative(project, observation['root'])))
+        if not isinstance(observation['version'], str) or not observation['version'].strip() or any(
+                ord(c) < 32 for c in observation['version']):
+            raise ValueError('OpenSpec version must be an exact nonempty line')
     for i, path in enumerate(paths):
         for other in paths[i + 1:]:
             if path == other or path.is_relative_to(other) or other.is_relative_to(path):
                 raise ValueError('configuration paths must not overlap')
     return pin, cache_parent, cache, registration, runtimes
+
+
+def provenance_record(project, path):
+    if not path.is_file() or not stat.S_ISREG(path.stat().st_mode):
+        raise ValueError('provenance must be a regular file')
+    record = json.loads(path.read_text())
+    keys(record, ('schema_version', 'upstream', 'source_path', 'installed_path', 'sha256'),
+         ('schema_version', 'upstream', 'source_path', 'installed_path', 'sha256'))
+    if type(record['schema_version']) is not int or record['schema_version'] != 1:
+        raise ValueError('provenance schema_version must be 1')
+    validate_pin(record['upstream'])
+    if record['source_path'] != INSTALLER:
+        raise ValueError('provenance must identify the canonical installer source path')
+    installed = relative(project, record['installed_path'])
+    if not isinstance(record['sha256'], str) or not re.fullmatch('[0-9a-f]{64}', record['sha256']):
+        raise ValueError('provenance sha256 must be a full lowercase digest')
+    if not installed.is_file() or not stat.S_ISREG(installed.stat().st_mode):
+        raise ValueError('installed installer must be a regular file')
+    if hashlib.sha256(installed.read_bytes()).hexdigest() != record['sha256']:
+        raise ValueError('installed installer differs from reviewed provenance hash')
+    return record, installed
 
 
 def inventory(root):
@@ -231,6 +274,11 @@ def install(project, config, action='install'):
             verify_checkout(staging, pin)
             staging.rename(cache)
     verify_checkout(cache, pin)
+    configured = json.loads(config.read_text())
+    if 'provenance' in configured:
+        record, installed = provenance_record(project, relative(project, configured['provenance']))
+        if record['upstream'] == pin and installed.read_bytes() != (cache / INSTALLER).read_bytes():
+            raise ValueError('installer provenance differs from canonical pinned source bytes')
     package = cache / PACKAGE
     receipt_path = config.with_name('installation.json')
     safe_path(receipt_path)
@@ -289,14 +337,57 @@ def install(project, config, action='install'):
     return cache
 
 
+def observations(project, config, cache, *, native_codex=False, check_openspec=False):
+    """Explicit trusted-tool diagnostics, after the default static verification."""
+    project = safe_path(project)
+    configured = json.loads(relative(project, config).read_text())
+    if native_codex:
+        adapter = adapter_for(cache)
+        codex = [runtime for runtime in configured['runtimes'] if runtime['host'] == 'codex']
+        if not codex:
+            raise ValueError('native Codex observation requires a configured Codex runtime')
+        for runtime in codex:
+            output = relative(project, runtime['output'])
+            settings = tomllib.loads((output / 'config.toml').read_text())
+            args = ['codex', '--cd', str(project)]
+            for assignment in adapter.toml_assignments(settings):
+                args.extend(('-c', assignment))
+            command([*args, 'features', 'list'], cwd=project)
+        print('PASS: native Codex configuration loader; no inference requested')
+    if check_openspec:
+        if 'openspec' not in configured:
+            raise ValueError('OpenSpec observation requires configured command, root and version')
+        observation = configured['openspec']
+        root = relative(project, observation['root'])
+        if not root.is_dir():
+            raise ValueError('configured OpenSpec planning root is missing')
+        args = observation['command']
+        executable = relative(project, args[0])
+        if not executable.is_file() or not stat.S_ISREG(executable.stat().st_mode):
+            raise ValueError('OpenSpec command must be a regular project wrapper')
+        actual = command([str(executable), *args[1:], '--version'], cwd=project).decode().strip()
+        if actual != observation['version']:
+            raise ValueError(f'OpenSpec version differs: expected {observation["version"]!r}, observed {actual!r}')
+        print(f'PASS: OpenSpec version/root observation ({actual}); workflow/schema not inferred')
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('install', 'verify'))
     parser.add_argument('--project', required=True, type=Path)
     parser.add_argument('--config', default='.team/install.json')
+    parser.add_argument('--native-codex', action='store_true', help='verify only: invoke native config loader, no inference')
+    parser.add_argument('--check-openspec', action='store_true', help='verify only: invoke trusted project wrapper --version')
     args = parser.parse_args(argv)
     try:
-        print(f'Verified pinned source: {install(args.project, args.config, args.action)}')
+        if args.action != 'verify' and (args.native_codex or args.check_openspec):
+            raise ValueError('optional observations apply only to verify')
+        cache = install(args.project, args.config, args.action)
+        print(f'PASS: static integrity and bindings: {cache}')
+        if args.native_codex or args.check_openspec:
+            observations(args.project, args.config, cache, native_codex=args.native_codex,
+                         check_openspec=args.check_openspec)
+        print('Live team pilot: not run')
         return 0
     except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as exc:
         print(f'ERROR: {exc}', file=sys.stderr)
