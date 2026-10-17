@@ -40,3 +40,7 @@ Outcome and follow-up:
 Keep local results under ignored `eval-results/`; commit only sanitized evidence
 when explicitly intended for the repository. Static validation requires no
 provider credentials, paid requests, or external service access.
+
+Recorded, sanitized evidence: [2026-10-17 bounded development-team pilot](reports/2026-10-17-development-team.md).
+It includes real hosted role execution and reproducible synthetic controls, with
+native OpenSpec and CLI-adapter limitations recorded separately.
