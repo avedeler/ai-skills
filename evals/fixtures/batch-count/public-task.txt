@@ -1,0 +1,26 @@
+Implement the small synthetic Python module at fixture/batching.py according to
+the approved fixture/CONTRACT.md. It exposes batch_count(item_count, batch_size),
+which returns the minimum number of batches needed for trusted in-process integer
+counters. Zero items require zero batches; full batches do not add an empty batch;
+both inputs must be exactly built-in int values, with TypeError for other types
+and ValueError for negative item counts or batch sizes below one. Preserve exact
+integer arithmetic for arbitrary-size values and avoid external effects.
+
+You are authorized to implement this behavior, add meaningful standard-library
+regression tests under fixture/, and update fixture/README.md and module docs.
+Keep CONTRACT.md unchanged. Reuse the coordinator-assigned worktree and obey its
+single-writer phases. Do not edit evaluator artifacts or other repository files.
+Run appropriate local checks and report the exact commands, results, and any
+remaining limitation. Independent review and manual documentation/contract
+coherence checking follow; one bounded correction round is available if needed.
+
+No OpenSpec CLI, pinned wrapper, or active schema is installed for this fixture.
+Do not install or initialize one. Report native OpenSpec validation, sync, and
+archive as unavailable/unverified; a manual contract comparison is sufficient
+only for the local coherence portion of this bounded pilot.
+
+The entire pilot has a 25-minute budget and uses only this disposable fixture,
+Python's standard library, and the already assigned local repository workspace.
+No network, external APIs, external inference calls, credentials, other repos,
+runtime or infrastructure configuration changes, commits, PRs, merge, deployment,
+or archive are authorized. Deliver a locally reviewable candidate with evidence.

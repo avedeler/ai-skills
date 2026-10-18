@@ -1,0 +1,36 @@
+{
+  "skill_revision": "fb280abfd9d49dad4a4801e063442616ba641e25",
+  "input_pinned_utc": "2026-10-17T19:49:38.409193+00:00",
+  "original_input_manifest_sha256": "f9e2b46aa7f57d98599b51f1b233b2d0fc792bd3a98440e3d4893bbf3ef077fb",
+  "original_protocol_sha256": "8419df1c54f943faa503789539a744b92a545d178396e9c94ce16d92655ba207",
+  "oracle_sha256": "2321a0fce62e9e5dd2c9ea7f6a449cd75a6be5dd8a25c4f570a393a4817b80de",
+  "public_task_sha256": "8b4fead922f93b393ecbcdfa4c86f4fddc7a342e0dc5fa101d032e22cb22f3e3",
+  "initial": {
+    "candidate_id": "cb3a3546b96e4b99527ca80a94cf4a433560aa4b789a5951ed559a6523c3b0bd",
+    "files": {
+      "fixture/CONTRACT.md": "fe64a64f897fc4561b65603613e7d2ded49ba98d4f50351da7d94bda9eadfefd",
+      "fixture/README.md": "da9d49f2c520fc9eb4ae36109d35379c2316de68ddac4b06fcea3fd66bae4e97",
+      "fixture/batching.py": "180e3c389764714e8543bdb932b9c5bb8f95ba136f13c99ed1d9993304716b77",
+      "fixture/test_batching.py": "5ca64a6b0f5f735ccb0d8237b4f5deb605d3d82baa7e7220719439e7fac18fc0"
+    }
+  },
+  "seeded": {
+    "candidate_id": "4a76fb47706c39eeea5c8f6efc3ec4bfc7bd5f7e419de918ca32d33cdc67f744",
+    "files": {
+      "fixture/CONTRACT.md": "fe64a64f897fc4561b65603613e7d2ded49ba98d4f50351da7d94bda9eadfefd",
+      "fixture/README.md": "da9d49f2c520fc9eb4ae36109d35379c2316de68ddac4b06fcea3fd66bae4e97",
+      "fixture/batching.py": "2c8ff87eadba0813950b3b8bffbdc8838d0301aa18bd7b8d0d656dbeee420bfd",
+      "fixture/test_batching.py": "5ca64a6b0f5f735ccb0d8237b4f5deb605d3d82baa7e7220719439e7fac18fc0"
+    }
+  },
+  "final": {
+    "files": {
+      "fixture/CONTRACT.md": "fe64a64f897fc4561b65603613e7d2ded49ba98d4f50351da7d94bda9eadfefd",
+      "fixture/README.md": "85ce9e78fbfce0c15703a3fa8edf8772e6b04c34fa626be6f30defafc9a8d68a",
+      "fixture/batching.py": "180e3c389764714e8543bdb932b9c5bb8f95ba136f13c99ed1d9993304716b77",
+      "fixture/test_batching.py": "5ca64a6b0f5f735ccb0d8237b4f5deb605d3d82baa7e7220719439e7fac18fc0"
+    },
+    "candidate_id": "2966f40bdf4729d44e3e3502195774bb5a05f49ec5a2035ef8b1596cc54770d5"
+  },
+  "candidate_algorithm": "SHA256 of UTF-8 json.dumps(files, sort_keys=True, separators=(',', ':')); paths relative to pilot root; all four fixture files, excluding __pycache__"
+}
