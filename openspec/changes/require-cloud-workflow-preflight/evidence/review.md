@@ -68,3 +68,11 @@ passed that preservation design; root added a pre-read special-node check and
 13 no-network preservation controls, all passing. Its actual audit, fresh/repeat
 installation, environment publication and fresh-task discovery are separate
 acceptance steps. The setup template remains outside this public source tree.
+
+The final stronger correction passed re-review. Code review found no remaining
+material issue; its three executable-selection mutation controls were detected.
+Security review passed both the adapter and final preserved/staged bootstrap.
+The root's final pre-read special-node hardening was checked by the same reviewer.
+See deployment.md for actual source-pinned fresh/repeat installation and the
+remaining environment-publication/fresh-task acceptance. Those pending steps
+are not counted as completed runtime commissioning.

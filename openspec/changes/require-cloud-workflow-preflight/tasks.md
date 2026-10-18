@@ -13,8 +13,8 @@
 ## 3. Integration and delivery
 
 - [x] 3.1 Run repository validation, tests and strict OpenSpec validation; independently review correctness and installer security, resolving findings within the two-round budget.
-- [ ] 3.2 Install and verify the current workspace and a real selected change; record actual accepted explicit model requests and observation limits.
-- [ ] 3.3 Publish a draft PR and produce a source-pinned environment setup script with its remaining publication and fresh-session checks.
+- [x] 3.2 Install and verify the current workspace and a real selected change; record actual accepted explicit model requests and observation limits.
+- [x] 3.3 Publish a draft PR and produce a source-pinned environment setup script with its remaining publication and fresh-session checks.
 
 ## Workflow follow-up
 
