@@ -11,6 +11,7 @@ particular AI vendor, model, assistant application, or agent framework.
 | AI systems | [ai-agent-team-architect](skills/ai-agent-team-architect/SKILL.md) | Design one business workflow, choose the smallest useful architecture, and specify prompts, handoffs, tools, costs, tests, and rollout |
 | AI systems | [ai-agent-team-review](skills/ai-agent-team-review/SKILL.md) | Review a proposed or running workflow, identify failure and evidence gaps, and assess readiness for the next stage |
 | Software engineering | [openspec-development-team](skills/openspec-development-team/SKILL.md) | Coordinate eight dedicated development roles from idea and architecture through OpenSpec, tests, bounded correction, reviews, and documentation/spec sync |
+| Software engineering | [openspec-model-router](skills/openspec-model-router/SKILL.md) | Select scoped agent capabilities by difficulty, coordinate OpenSpec work, and calibrate total completion cost |
 
 The machine-readable [catalog](catalog.json) is the discovery index. It supports
 AI systems, software engineering, research, writing, data analysis, operations,
@@ -74,6 +75,11 @@ to reuse existing isolation, prefer native workspace tools, and serialize writer
 It bundles **using-git-worktrees** from **Superpowers** by **Jesse Vincent (obra)**
 under the MIT License. See [third-party notices](THIRD_PARTY_NOTICES.md) for the
 pinned source and license; preserve these files when copying the package.
+
+The optional [model-routing adapter](adapters/openspec-model-router/README.md)
+preserves a researched Sol 6.1 / Luna / Astra profile and supports installation
+in a cloud user skill directory without per-project copies. The router selects
+resources; the development-team skill still governs its lifecycle and review gates.
 
 ## Repository structure
 

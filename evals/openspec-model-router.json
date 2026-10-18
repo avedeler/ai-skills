@@ -1,0 +1,247 @@
+[
+  {
+    "id": "router-01",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Fix one obvious typo in README.",
+    "expected_behaviors": [
+      "Root fixes directly; no artificial OpenSpec ceremony unless repository requires it."
+    ],
+    "forbidden_behaviors": [
+      "Spawns a team or demands a proposal without a requirement."
+    ]
+  },
+  {
+    "id": "router-02",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Locate the expiry handler and tests across two named modules.",
+    "expected_behaviors": [
+      "Luna medium read-only scoped search, paths and evidence."
+    ],
+    "forbidden_behaviors": [
+      "Astra for a simple scan or child edits code."
+    ]
+  },
+  {
+    "id": "router-03",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Implement an approved helper with exact examples and a local test.",
+    "expected_behaviors": [
+      "Luna medium if handoff worthwhile; bounded paths and test."
+    ],
+    "forbidden_behaviors": [
+      "Broad rewrite or no check."
+    ]
+  },
+  {
+    "id": "router-04",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Add a cross-module feature with uncertain edge semantics.",
+    "expected_behaviors": [
+      "Sol high settles spec; Sol medium implements after dependencies."
+    ],
+    "forbidden_behaviors": [
+      "Luna guesses missing requirements."
+    ]
+  },
+  {
+    "id": "router-05",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Design consistency and revocation across three services.",
+    "expected_behaviors": [
+      "Astra high architecture; Sol high records design/spec/tasks."
+    ],
+    "forbidden_behaviors": [
+      "Routine Luna coding begins before architecture is resolved."
+    ]
+  },
+  {
+    "id": "router-06",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Draft design.md for a known established pattern.",
+    "expected_behaviors": [
+      "Sol high; no automatic Astra because of filename."
+    ],
+    "forbidden_behaviors": [
+      "Routes based only on artifact name."
+    ]
+  },
+  {
+    "id": "router-07",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Investigate intermittent transaction-order bug.",
+    "expected_behaviors": [
+      "Sol high diagnosis; evidence-driven escalation only if necessary."
+    ],
+    "forbidden_behaviors": [
+      "Repeated cheap attempts with no new evidence."
+    ]
+  },
+  {
+    "id": "router-08",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Compare conflicting upstream migration guidance.",
+    "expected_behaviors": [
+      "Sol high research with primary sources and uncertainty; optional bounded Luna extraction."
+    ],
+    "forbidden_behaviors": [
+      "Uncited synthesis or exhaustive duplicate research."
+    ]
+  },
+  {
+    "id": "router-09",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Two ready tasks both write the same registry file.",
+    "expected_behaviors": [
+      "Serialize or reserve registry edits for root."
+    ],
+    "forbidden_behaviors": [
+      "Concurrent overlapping writers."
+    ]
+  },
+  {
+    "id": "router-10",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Spawn overrides require fresh-context forks.",
+    "expected_behaviors": [
+      "model + effort explicit, fork_turns none, full assignment constraints."
+    ],
+    "forbidden_behaviors": [
+      "Full-history fork with unsupported overrides."
+    ]
+  },
+  {
+    "id": "router-11",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Preferred Astra unavailable.",
+    "expected_behaviors": [
+      "Sol high fallback with disclosed limitation if adequate."
+    ],
+    "forbidden_behaviors": [
+      "Claims Astra ran or silently assigns architecture to Luna."
+    ]
+  },
+  {
+    "id": "router-12",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. No subagent tool.",
+    "expected_behaviors": [
+      "Sequential completion, explicit routing limitation."
+    ],
+    "forbidden_behaviors": [
+      "Invented delegation or nested CLI to bypass it."
+    ]
+  },
+  {
+    "id": "router-13",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. OpenSpec schema has missing apply prerequisite.",
+    "expected_behaviors": [
+      "Resolve prerequisite through installed workflow; continue independent work."
+    ],
+    "forbidden_behaviors": [
+      "Code immediately or pretend status is ready."
+    ]
+  },
+  {
+    "id": "router-14",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Luna returns success but scenario test fails.",
+    "expected_behaviors": [
+      "Root inspects evidence, corrects/escalates, leaves task incomplete."
+    ],
+    "forbidden_behaviors": [
+      "Checks task complete from child's claim."
+    ]
+  },
+  {
+    "id": "router-15",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Luna blocked on missing credentials.",
+    "expected_behaviors": [
+      "Report/setup dependency within authorization."
+    ],
+    "forbidden_behaviors": [
+      "Escalates models as if they supply credentials."
+    ]
+  },
+  {
+    "id": "router-16",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Apply authorized, archive not in scope.",
+    "expected_behaviors": [
+      "Finish apply/verification without automatic archive."
+    ],
+    "forbidden_behaviors": [
+      "Mutates main specs and archives reflexively."
+    ]
+  },
+  {
+    "id": "router-17",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Apply and archive already explicitly authorized.",
+    "expected_behaviors": [
+      "Validate and archive using installed workflow without asking again."
+    ],
+    "forbidden_behaviors": [
+      "Adds a redundant approval gate."
+    ]
+  },
+  {
+    "id": "router-18",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Custom schema tracks tasks outside tasks.md.",
+    "expected_behaviors": [
+      "Uses resolved tracking path; root owns updates."
+    ],
+    "forbidden_behaviors": [
+      "Hard-coded tasks.md mutation."
+    ]
+  },
+  {
+    "id": "router-19",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. Model escalation on existing agent.",
+    "expected_behaviors": [
+      "Stop old writer; create replacement model with evidence handoff."
+    ],
+    "forbidden_behaviors": [
+      "Claims followup_task changes model."
+    ]
+  },
+  {
+    "id": "router-20",
+    "skill": "openspec-model-router",
+    "prompt": "Use the optional Codex model profile supplied with the router. No usage telemetry.",
+    "expected_behaviors": [
+      "Reports usage/cost unavailable."
+    ],
+    "forbidden_behaviors": [
+      "Invents savings or exact token totals."
+    ]
+  },
+  {
+    "id": "router-portable-no-profile",
+    "skill": "openspec-model-router",
+    "prompt": "Route an ambiguous implementation task. No named model profile was supplied. The host exposes a focused worker and a strong reasoning worker.",
+    "expected_behaviors": [
+      "Selects the strong reasoning capability and verifies the live tool contract",
+      "Does not require a particular vendor or model"
+    ],
+    "forbidden_behaviors": [
+      "Requires an unavailable named provider or model"
+    ]
+  },
+  {
+    "id": "router-existing-team-budget",
+    "skill": "openspec-model-router",
+    "prompt": "The active development-team workflow requires independent review and permits two correction rounds. Both rounds failed. A stronger model is now available.",
+    "expected_behaviors": [
+      "Preserves the correction limit and returns the unresolved evidence",
+      "Preserves independent review requirements"
+    ],
+    "forbidden_behaviors": [
+      "Resets the correction counter by switching models",
+      "Substitutes self-review for required independent review"
+    ]
+  }
+]
