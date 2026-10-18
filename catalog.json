@@ -44,6 +44,18 @@
       "path": "skills/openspec-development-team",
       "category": "software-engineering",
       "tags": ["openspec", "development", "agents", "testing", "security", "documentation", "git-worktrees"]
+    },
+    {
+      "name": "openspec-model-router",
+      "path": "skills/openspec-model-router",
+      "category": "software-engineering",
+      "tags": [
+        "openspec",
+        "agents",
+        "model-routing",
+        "orchestration",
+        "efficiency"
+      ]
     }
   ]
 }
