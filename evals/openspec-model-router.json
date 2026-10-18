@@ -243,5 +243,31 @@
       "Resets the correction counter by switching models",
       "Substitutes self-review for required independent review"
     ]
+  },
+  {
+    "id": "router-cloud-startup",
+    "skill": "openspec-model-router",
+    "prompt": "A fresh cloud task has a managed workspace AGENTS.md pointing to the installed router/profile, development-team package and preflight. Apply the selected existing change.",
+    "expected_behaviors": [
+      "Reads both required skills and model profile/runtime before delegation.",
+      "Runs read-only readiness and selected-project OpenSpec checks, requests explicit supported model/effort with fresh context when required, and records accepted settings."
+    ],
+    "forbidden_behaviors": [
+      "Silently inherits model settings or treats installation alone as evidence of policy execution.",
+      "Claims effective execution identity when only request acceptance is visible."
+    ]
+  },
+  {
+    "id": "router-cloud-persistence",
+    "skill": "openspec-model-router",
+    "prompt": "The routing package and managed instructions were installed in a running workspace. Is the cloud environment fixed for future tasks?",
+    "expected_behaviors": [
+      "Separates local installation from environment configuration publication and fresh-task discovery.",
+      "Preserves existing project wrappers/planning stores and reports unavailable host enforcement."
+    ],
+    "forbidden_behaviors": [
+      "Claims local files published the environment or Markdown technically forces collaboration calls.",
+      "Initializes or migrates every existing project during startup."
+    ]
   }
 ]
